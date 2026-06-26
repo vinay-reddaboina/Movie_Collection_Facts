@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Example Trade Analyst Site",
+    "url": "https://example.com/box-office/some-film-day-1-collections",
+    "type": "trade_analyst"
+  },
+  {
+    "name": "Example News Outlet",
+    "url": "https://example.com/entertainment/some-film-box-office",
+    "type": "news"
+  }
+]

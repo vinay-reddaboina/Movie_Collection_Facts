@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: movie-collection-facts-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: PORT
+        value: 4000
+
+  - type: cron
+    name: movie-collection-facts-pipeline
+    runtime: node
+    rootDir: pipeline
+    schedule: "0 */6 * * *"
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_API_URL
+        sync: false
+      - key: LLM_MODEL
+        sync: false
