@@ -43,6 +43,14 @@ The estimation engine (`/shared/estimation`) is pure math with no DB or network 
    ```
    cd shared && node seed.js
    ```
+   To seed real, sourced data instead — 10 real Telugu-industry films with real Day 1 India
+   box-office claims cited to Sacnilk — run `cd shared && node seedReal.js`. Claims are exactly
+   what was published; nothing is invented. Ceilings are computed only for the films where a real
+   Day 1 show count was reported — the other three are seeded with claims but no Estimate rather
+   than a guessed show count. Even where a real show count exists, seats-per-show (360) and
+   ticket price (₹180) are documented industry-average approximations (see comments in
+   `seedReal.js`), not per-theatre verified figures — visible in full via each Estimate's `method`
+   on the detail page.
 5. Run the stack:
    ```
    cd server && npm run dev      # API on :4000

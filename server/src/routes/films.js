@@ -23,8 +23,15 @@ router.get('/:id', async (req, res, next) => {
       Estimate.find({ film: film._id }).populate('location', 'name type').sort({ date: 1 }).lean(),
     ]);
 
+    // footfalls/occupancy are counts and percentages, not currency - scoring
+    // them against an INR ceiling is meaningless, so only gross/net/share
+    // claims get compared.
+    const MONETARY_METRIC_TYPES = new Set(['gross', 'net', 'share']);
+
     const claims = collections.map((collection) => {
-      const estimate = matchEstimateForCollection(collection, estimates);
+      const estimate = MONETARY_METRIC_TYPES.has(collection.metricType)
+        ? matchEstimateForCollection(collection, estimates)
+        : null;
       const score = estimate ? plausibilityScore(collection.amount, estimate.ceilingAmount) : null;
       return {
         ...collection,
