@@ -10,7 +10,9 @@ export function plausibilityScore(claimedAmount, ceilingAmount) {
   return claimedAmount / ceilingAmount;
 }
 
-// Default bands; tunable once real claims are compared against real ceilings (Phase 7).
+// Checked against real Day 1 claims for 10 real Tollywood films (see
+// shared/seedReal.js): produced a spread across all four bands rather than
+// clustering everything into one, so the defaults are kept as-is.
 export const PLAUSIBILITY_BANDS = {
   impossible: 1,
   aggressive: 0.85,
